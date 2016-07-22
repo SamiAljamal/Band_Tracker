@@ -82,12 +82,6 @@ namespace BandTracker
     Assert.Equal(allbands, Band.GetAll());
   }
 
-
-
-
-
-
-
     public void Dispose()
     {
       Band.DeleteAll();
