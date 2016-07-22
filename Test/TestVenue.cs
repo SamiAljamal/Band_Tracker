@@ -42,21 +42,21 @@ namespace BandTracker
     }
 
     [Fact]
-  public void Test_Save_AssignsIdToVenue()
-  {
+    public void Test_Save_AssignsIdToVenue()
+    {
 
-    Venue testVenue = new Venue("The Ballroom");
-    testVenue.Save();
-    Venue savedVenue = Venue.GetAll()[0];
+      Venue testVenue = new Venue("The Ballroom");
+      testVenue.Save();
+      Venue savedVenue = Venue.GetAll()[0];
 
-    int result = savedVenue.GetId();
-    int testId = testVenue.GetId();
+      int result = savedVenue.GetId();
+      int testId = testVenue.GetId();
 
-    //Assert
-    Assert.Equal(testId, result);
-  }
+      //Assert
+      Assert.Equal(testId, result);
+    }
 
-  [Fact]
+    [Fact]
     public void Test_Find_FindsVenueInDatabase()
     {
       //Arrange
@@ -69,6 +69,20 @@ namespace BandTracker
       //Assert
       Assert.Equal(testVenue, foundVenue);
     }
+
+    [Fact]
+    public void Test_Update_UpdatesVenueInDatabase()
+    {
+      Venue testVenue = new Venue("The Ballroom");
+      testVenue.Save();
+      string newTeacher = "The Stage";
+
+      testVenue.Update(newTeacher);
+
+      Assert.Equal(newTeacher, testVenue.GetName());
+    }
+
+
 
 
 
