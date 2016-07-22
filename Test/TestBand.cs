@@ -6,11 +6,18 @@ using System.Data.SqlClient;
 
 namespace BandTracker
 {
-  public class BandTEst : IDisposable
+  public class BandTest : IDisposable
   {
-    public StudentTest()
+    public BandTest()
     {
       DBConfiguration.ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=band_tracker_test;Integrated Security=SSPI;";
+    }
+
+    [Fact]
+    public void Test_DatabaseEmptyAtFirst()
+    {
+      int result = Band.GetAll().Count;
+      Assert.Equal(0, result);
     }
 
     public void Dispose()
