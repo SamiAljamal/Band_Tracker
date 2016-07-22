@@ -104,10 +104,74 @@ namespace BandTracker
       }
     }
 
+    public static Band Find(int Id)
+    {
+      SqlConnection conn = DB.Connection();
+      SqlDataReader rdr = null;
+      conn.Open();
 
+      SqlCommand cmd = new SqlCommand("SELECT * FROM bands WHERE id = @BandId;", conn);
+      SqlParameter bandsIdParameter = new SqlParameter();
+      bandsIdParameter.ParameterName = "@BandId";
+      bandsIdParameter.Value = Id.ToString();
+      cmd.Parameters.Add(bandsIdParameter);
+      rdr = cmd.ExecuteReader();
 
+      int foundBandId = 0;
+      string foundBandName = null;
 
+      while(rdr.Read())
+      {
+        foundBandId = rdr.GetInt32(1);
+        foundBandName = rdr.GetString(0);
+      }
+      Band foundBand = new Band(foundBandName, foundBandId);
 
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
+      return foundBand;
+    }
+
+    public void Update(string newName)
+    {
+      SqlConnection conn = DB.Connection();
+      SqlDataReader rdr;
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("UPDATE bands SET name = @NewName OUTPUT INSERTED.name WHERE id = @BandId;", conn);
+
+      SqlParameter newNameParameter = new SqlParameter();
+      newNameParameter.ParameterName = "@NewName";
+      newNameParameter.Value = newName;
+      cmd.Parameters.Add(newNameParameter);
+
+      SqlParameter VenueIdParameter = new SqlParameter();
+      VenueIdParameter.ParameterName = "@BandId";
+      VenueIdParameter.Value = this.GetId();
+      cmd.Parameters.Add(VenueIdParameter);
+      rdr = cmd.ExecuteReader();
+
+      while(rdr.Read())
+      {
+        this._name = rdr.GetString(0);
+      }
+
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+
+      if (conn != null)
+      {
+        conn.Close();
+      }
+    }
 
 
 

@@ -75,11 +75,11 @@ namespace BandTracker
     {
       Venue testVenue = new Venue("The Ballroom");
       testVenue.Save();
-      string newTeacher = "The Stage";
+      string newVenue = "The Stage";
 
-      testVenue.Update(newTeacher);
+      testVenue.Update(newVenue);
 
-      Assert.Equal(newTeacher, testVenue.GetName());
+      Assert.Equal(newVenue, testVenue.GetName());
     }
 
     [Fact]
@@ -98,16 +98,10 @@ namespace BandTracker
   }
 
 
-
-
-
-
-
-
-
     public void Dispose()
     {
       Venue.DeleteAll();
+      Band.DeleteAll();
     }
 
 

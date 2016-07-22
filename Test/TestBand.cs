@@ -44,11 +44,38 @@ namespace BandTracker
       Assert.Equal(testBands, result);
     }
 
+    [Fact]
+    public void Test_Find_FindsBandInDatabase()
+    {
+      Band testBand = new Band("Joe");
+      testBand.Save();
+      Band foundBand = Band.Find(testBand.GetId());
+      Assert.Equal(testBand, foundBand);
+    }
+
+    [Fact]
+    public void Test_Update_UpdatesBandInDatabase()
+    {
+      Band testBand = new Band("The Ballroom");
+      testBand.Save();
+      string newBand ="The Stage";
+
+      testBand.Update(newBand);
+      System.Console.WriteLine(testBand.GetName());
+      System.Console.WriteLine(newBand);
+
+      Assert.Equal(newBand, testBand.GetName());
+    }
+
+
+
+
+
 
 
     public void Dispose()
     {
-      Venue.DeleteAll();
+      Band.DeleteAll();
       Band.DeleteAll();
     }
   }
