@@ -8,7 +8,19 @@ namespace BandTracker
   {
     public HomeModule()
     {
+      Get["/"] =_=>{
+        List<Venue> allVenues = Venue.GetAll();
 
+        return View["index.cshtml",allVenues];
+      };
+
+      Post["/venue/add"]=_=>
+      {
+        Venue newVenue = new Venue(Request.Form["venue"]);
+        newVenue.Save();
+        List<Venue> allVenues = Venue.GetAll();
+        return View["index.cshtml",allVenues];
+      };
     }
   }
 }

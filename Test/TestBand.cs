@@ -93,8 +93,6 @@ namespace BandTracker
 
 
     Assert.Equal(0,result.Count);
-
-
   }
 
 

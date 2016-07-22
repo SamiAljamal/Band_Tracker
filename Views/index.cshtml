@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+<body>
+  <div class="container">
+    <div class="jumbotron">
+      <h2>Portland Concerts!</h2>
+      <p>
+        Welcome to Portland's Concert page! have a look at all of our venues and what bands will be playing there.
+      </p>
+      <form action = "/venue/add" method = "post">
+        <label for = "venue">Name</label>
+        <input id = "venue" name = "venue" type = "text">
+        <button type = "submit">Add Venue</button>
+      </form>
+    </div>
+    <div class="jumbotron">
+      <h2>Venues</h2>
+      <ul>
+
+        @if(Model.Count !=0)
+        {
+          @foreach(var venue in Model)
+          {
+            <li><a href="/venues/@venue.GetId()">@venue.GetName()</a></li>
+          }
+
+        }
+        else
+        {
+          <p>
+            No Venues Added Yet!
+          </p>
+        }
+
+      </ul>
+    </div>
+
+  </div>
+</body>
+</html>
