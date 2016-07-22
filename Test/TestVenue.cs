@@ -6,7 +6,7 @@ using System.Data.SqlClient;
 
 namespace BandTracker
 {
-  public class VenueTest 
+  public class VenueTest
   {
     public VenueTest()
     {
@@ -22,6 +22,12 @@ namespace BandTracker
       Assert.Equal(firstVenue, secondVenue);
     }
 
-
+    [Fact]
+    public void Test_DatabaseEmptyAtFirst()
+    {
+      int result = Venue.GetAll().Count;
+      Assert.Equal(0, result);
+    }
+    
   }
 }
