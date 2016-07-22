@@ -6,7 +6,7 @@ using System.Data.SqlClient;
 
 namespace BandTracker
 {
-  public class VenueTest
+  public class VenueTest : IDisposable
   {
     public VenueTest()
     {
@@ -28,6 +28,58 @@ namespace BandTracker
       int result = Venue.GetAll().Count;
       Assert.Equal(0, result);
     }
-    
+
+    [Fact]
+    public void Test_Save_SaveVenuetoDB()
+    {
+      Venue testVenue = new Venue("The Ballroom");
+      testVenue.Save();
+
+      List<Venue> testVenues = new List<Venue>{testVenue};
+      List<Venue> resultVenues = Venue.GetAll();
+
+      Assert.Equal(testVenues, resultVenues);
+    }
+
+    [Fact]
+  public void Test_Save_AssignsIdToVenue()
+  {
+
+    Venue testVenue = new Venue("The Ballroom");
+    testVenue.Save();
+    Venue savedVenue = Venue.GetAll()[0];
+
+    int result = savedVenue.GetId();
+    int testId = testVenue.GetId();
+
+    //Assert
+    Assert.Equal(testId, result);
+  }
+
+  [Fact]
+    public void Test_Find_FindsVenueInDatabase()
+    {
+      //Arrange
+      Venue testVenue =  new Venue("The Ballroom");
+      testVenue.Save();
+
+      //Act
+      Venue foundVenue = Venue.Find(testVenue.GetId());
+
+      //Assert
+      Assert.Equal(testVenue, foundVenue);
+    }
+
+
+
+
+
+    public void Dispose()
+    {
+      Venue.DeleteAll();
+    }
+
+
+
   }
 }
