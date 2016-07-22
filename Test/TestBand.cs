@@ -20,6 +20,15 @@ namespace BandTracker
       Assert.Equal(0, result);
     }
 
+    [Fact]
+    public void Test_Equal_ReturnsTrueIfBandsAreSame()
+    {
+      Band firstBand = new Band("Fred");
+      Band secondBand = new Band("Fred");
+
+      Assert.Equal(firstBand, secondBand);
+    }
+
     public void Dispose()
     {
       Venue.DeleteAll();
