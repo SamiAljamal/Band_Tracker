@@ -70,7 +70,7 @@ namespace BandTracker
   [Fact]
   public void Test_Delete_DeleteBandfromDB()
   {
-    Band testBand = new Band("The Ballroom");
+    Band testBand = new Band("Rockers");
     Band testBand2 = new Band("The Stage");
     testBand.Save();
     testBand2.Save();
@@ -82,10 +82,42 @@ namespace BandTracker
     Assert.Equal(allbands, Band.GetAll());
   }
 
+  [Fact]
+  public void Test_GetVenues_FindVenuesFromDb_noVenuesinDb()
+  {
+
+    Band testBand = new Band("Rockers");
+      testBand.Save();
+
+    List<Venue> result = testBand.GetVenues();
+
+
+    Assert.Equal(0,result.Count);
+
+
+  }
+
+
+  [Fact]
+  public void Test_AddVenue_AddsVenuetoBands()
+  {
+    Venue testVenue = new Venue("The Ballroom");
+    testVenue.Save();
+
+    Band testBand = new Band("The rockers");
+    testBand.Save();
+
+    testVenue.AddBand(testBand);
+    List<Venue> testList = new List<Venue>{testVenue};
+    List<Venue> result = testBand.GetVenues();
+
+    Assert.Equal(testList, result);
+  }
+
     public void Dispose()
     {
       Band.DeleteAll();
-      Band.DeleteAll();
+      Venue.DeleteAll();
     }
   }
 }

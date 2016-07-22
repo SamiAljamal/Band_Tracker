@@ -98,16 +98,16 @@ namespace BandTracker
     }
 
     [Fact]
-    public void Test_GetBands_FindBandsFromDb()
+    public void Test_GetBands_FindBandsFromDb_nobandsinDb()
     {
-      Band newBand = new Band("The rockers");
-      newBand.Save();
 
-      List<Band> getBands = new List<Band>{};
+      Venue testVenue = new Venue("The Ballroom");
+      testVenue.Save();
 
-      getBands.Add(newBand);
+      List<Band> result = testVenue.GetBands();
 
-      Assert.Equal(getBands[0].GetName(), newBand.GetName());
+
+      Assert.Equal(0,result.Count);
 
 
     }
@@ -123,14 +123,10 @@ namespace BandTracker
 
       testVenue.AddBand(testBand);
       List<Band> testList = new List<Band>{testBand};
-      System.Console.WriteLine(testList[0].GetName());
       List<Band> result = testVenue.GetBands();
-      System.Console.WriteLine(result[0].GetName());
 
       Assert.Equal(testList, result);
     }
-
-
 
 
     public void Dispose()
