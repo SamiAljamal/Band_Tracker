@@ -137,7 +137,7 @@ namespace BandTracker
       }
       return foundVenue;
     }
-
+    
     public void Update(string newName)
     {
       SqlConnection conn = DB.Connection();
@@ -194,8 +194,6 @@ namespace BandTracker
         conn.Close();
       }
     }
-
-
 
     public static void DeleteAll()
     {
