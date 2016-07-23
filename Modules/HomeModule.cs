@@ -19,7 +19,6 @@ namespace BandTracker
         return View["bands.cshtml", allBands];
       };
 
-
       Post["/bands/add"]=_=>
       {
         Band newBand = new Band(Request.Form["bands"]);
@@ -63,7 +62,6 @@ namespace BandTracker
         model.Add("allBands", allBands);
 
         return View["venue.cshtml", model];
-
       };
 
       Get["/bands/{id}"]=parameters=>{
@@ -93,6 +91,38 @@ namespace BandTracker
         model.Add("allVenues", allVenues);
         return View["band.cshtml", model];
       };
+
+      Get["/venue/remove/{id}"]=parameters=>{
+        Venue removeVenue = Venue.Find(parameters.id);
+        return View["venue_remove.cshtml", removeVenue];
+      };
+
+      Delete["/venue/remove/{id}"]=paramters=>{
+        Dictionary<string,object> model = new Dictionary<string,object>();
+        Venue removeVenue = Venue.Find(Request.Form["venue_id"]);
+        Band selectedBand = Band.Find(paramters.id);
+        selectedBand.RemoveVenue(removeVenue);
+
+        List<Venue> bandsVenue = selectedBand.GetVenues();
+        List<Venue> allVenues = Venue.GetAll();
+
+        model.Add("allVenues", allVenues);
+        model.Add("Venue", bandsVenue);
+        model.Add("Bands", selectedBand);
+
+        return View["band.cshtml", model];
+      };
+
+
+
+
+
+
+
+
+
+
+
 
 
 

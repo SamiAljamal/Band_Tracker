@@ -28,7 +28,7 @@
           {
             @foreach (var venue in Model["Venue"])
             {
-              <li>@venue.GetName()</li>
+              <li>@venue.GetName() &nbsp <a href="/venue/remove/@venue.GetId()">Remove Venue</a></li>
             }
           }
           else
