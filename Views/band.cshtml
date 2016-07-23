@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
+    <meta charset="utf-8">
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="jumbotron">
+        <h2>@Model["Band"].GetName()</h2>
+      </div>
+      <div class="jumbotron">
+        <h2>Band List!</h2>
+        <ul>
+          @if (Model["Venue"].Count !=0)
+          {
+            @foreach (var venue in Model)
+            {
+              <li>@Model["Venue"].GetName()</li>
+            }
+          }
+          else
+          {
+            <p>
+              No Bands added to the venue yet.
+            </p>
+          }
+        </ul>
+      </div>
+    </div>
+
+
+
+  </body>
+</html>
