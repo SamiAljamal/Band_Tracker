@@ -16,9 +16,9 @@
         <ul>
           @if (Model["Bands"].Count !=0)
           {
-            @foreach (var bands in Model)
+            @foreach (var bands in Model["Bands"])
             {
-              <a href="/bands/["Bands"].GetId()">["Bands"].GetName()</a>
+              <a href="/bands/["Bands"].GetId()">@bands.GetName()</a>
             }
           }
           else

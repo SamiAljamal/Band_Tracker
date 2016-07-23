@@ -10,15 +10,25 @@
     <div class="container">
       <div class="jumbotron">
         <h2>@Model["Band"].GetName()</h2>
+        <form  action="/band/@Model["Band"].GetId()" method="post">
+          <select  name="venue_id">
+            @foreach(var allvenues in Model["allVenues"])
+            {
+              <option value="@allvenues.GetId()">@allvenues.GetName()</option>
+            }
+          </select>
+          <button type="submit" name="button">Add Venue</button>
+
+        </form>
       </div>
       <div class="jumbotron">
         <h2>Band List!</h2>
         <ul>
           @if (Model["Venue"].Count !=0)
           {
-            @foreach (var venue in Model)
+            @foreach (var venue in Model["Venue"])
             {
-              <li>@Model["Venue"].GetName()</li>
+              <li>@venue.GetName()</li>
             }
           }
           else
