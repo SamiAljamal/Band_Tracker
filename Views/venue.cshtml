@@ -10,6 +10,15 @@
     <div class="container">
       <div class="jumbotron">
         <h2>@Model["Venue"].GetName()</h2>
+        <form  action="/venue/@Model["Venue"].GetId()" method="post">
+          <select  name="band_id">
+            @foreach(var allbands in Model["allBands"])
+            {
+              <option value="@allbands.GetId()">@allbands.GetName()</option>
+            }
+          </select>
+          <button type="submit" name="button">Add Band</button>
+        </form>
       </div>
       <div class="jumbotron">
         <h2>Band List!</h2>
@@ -18,7 +27,7 @@
           {
             @foreach (var bands in Model["Bands"])
             {
-              <a href="/bands/["Bands"].GetId()">@bands.GetName()</a>
+              <li>@bands.GetName()</li>
             }
           }
           else

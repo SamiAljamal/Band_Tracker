@@ -9,8 +9,8 @@
   <body>
     <div class="container">
       <div class="jumbotron">
-        <h2>@Model["Band"].GetName()</h2>
-        <form  action="/band/@Model["Band"].GetId()" method="post">
+        <h2>@Model["Bands"].GetName()</h2>
+        <form  action="/band/@Model["Bands"].GetId()" method="post">
           <select  name="venue_id">
             @foreach(var allvenues in Model["allVenues"])
             {
