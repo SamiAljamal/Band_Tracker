@@ -27,7 +27,7 @@
         {
           @foreach(var venue in Model)
           {
-            <li><a href="/venues/@venue.GetId()">@venue.GetName()</a></li>
+            <li><a href="/venues/@venue.GetId()">@venue.GetName()</a> <a href="/update/@venue.GetId()"><button type="button" name="button">Update</button></a><form action="/venue/delete" method="post"><input type="hidden" name="_method" value="DELETE"><input type="hidden" name="venue_id" value="@venue.GetId()"><button type="submit" name ="button">Delete</button></form></li>
           }
 
         }
