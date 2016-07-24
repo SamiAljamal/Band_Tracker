@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="jumbotron">
+        <h2>Are You sure you wante to remove the Band from this venue?</h2>
+        <form  action="/band/remove/@Model.GetId()" method="post">
+          <input type="hidden" name="_method" value="DELETE">
+          <input type="hidden" name="band_id" value="@Model.GetId()">
+          <button type="submit" name="button">Yes</button>
+        </form>
+
+      </div>
+
+    </div>
+  </body>
+</html>

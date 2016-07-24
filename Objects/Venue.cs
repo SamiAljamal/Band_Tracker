@@ -255,6 +255,31 @@ namespace BandTracker
       }
     }
 
+    public void RemoveBand(Band removedBand)
+   {
+     SqlConnection conn = DB.Connection();
+     conn.Open();
+
+     SqlCommand cmd = new SqlCommand("DELETE FROM bands_venues WHERE bands_id = @BandId AND venues_id = @VenueId", conn);
+
+     SqlParameter bandIdParameter = new SqlParameter();
+     bandIdParameter.ParameterName = "@BandId";
+     bandIdParameter.Value = removedBand.GetId();
+     cmd.Parameters.Add(bandIdParameter);
+
+     SqlParameter venueIdParameter = new SqlParameter();
+     venueIdParameter.ParameterName = "@VenueId";
+     venueIdParameter.Value = this.GetId();
+     cmd.Parameters.Add(venueIdParameter);
+
+     cmd.ExecuteNonQuery();
+
+     if (conn != null)
+     {
+       conn.Close();
+     }
+   }
+
     public static void DeleteAll()
     {
       SqlConnection conn = DB.Connection();

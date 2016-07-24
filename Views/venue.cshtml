@@ -27,7 +27,7 @@
           {
             @foreach (var bands in Model["Bands"])
             {
-              <li>@bands.GetName()</li>
+              <li>@bands.GetName() &nbsp <a href="/band/remove/@bands.GetId()">Remove Band</a></li>
             }
           }
           else
