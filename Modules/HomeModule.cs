@@ -53,6 +53,7 @@ namespace BandTracker
         Band selectedBand = Band.Find(Request.Form["band_id"]);
         Venue selectedVenue = Venue.Find(parameters.id);
         selectedBand.AddVenue(selectedVenue);
+        selectedVenue.AddBand(selectedBand);
         Dictionary<string,object> model = new Dictionary<string,object>();
         List<Band> venueBands = selectedVenue.GetBands();
         List<Band> allBands = Band.GetAll();
@@ -81,6 +82,7 @@ namespace BandTracker
 
         Band selectedBand = Band.Find(parameters.id);
         selectedVenue.AddBand(selectedBand);
+        selectedBand.AddVenue(selectedVenue);
 
         Dictionary<string,object> model = new Dictionary<string,object>();
         List<Venue> bandsVenue = selectedBand.GetVenues();
@@ -102,6 +104,7 @@ namespace BandTracker
         Venue removeVenue = Venue.Find(Request.Form["venue_id"]);
         Band selectedBand = Band.Find(paramters.id);
         selectedBand.RemoveVenue(removeVenue);
+        removeVenue.RemoveBand(selectedBand);
 
         List<Venue> bandsVenue = selectedBand.GetVenues();
         List<Venue> allVenues = Venue.GetAll();
@@ -123,6 +126,7 @@ namespace BandTracker
         Band removeBand = Band.Find(Request.Form["band_id"]);
         Venue selectedVenue = Venue.Find(parameters.id);
         selectedVenue.RemoveBand(removeBand);
+        removeBand.RemoveVenue(selectedVenue);
 
         List<Band> venueBands = selectedVenue.GetBands();
         List<Band> allBands = Band.GetAll();
@@ -151,27 +155,6 @@ namespace BandTracker
         updateVenue.Update(Request.Form["name"]);
         return View["index.cshtml", Venue.GetAll()];
       };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     }
   }
