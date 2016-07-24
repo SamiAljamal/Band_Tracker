@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="jumbotron">
+        <h2>update Venue</h2>
+        <form action="/update/@Model.GetId()" method="post">
+          <input type="hidden" name="_method" value="PATCH">
+          <label for="name">Change Name</label>
+          <input type="text" name="name" value ="@Model.GetName()">
+          <button type="submit" name="button">Submit</button>
+        </form>
+
+      </div>
+
+    </div>
+
+  </body>
+</html>

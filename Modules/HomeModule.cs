@@ -141,6 +141,21 @@ namespace BandTracker
         return View["index.cshtml", allvenues];
       };
 
+      Get["/update/{id}"]=parameters=>{
+        Venue updateVenue = Venue.Find(parameters.id);
+        return View["venue_update.cshtml", updateVenue];
+      };
+
+      Patch["/update/{id}"]=parameters=>{
+        Venue updateVenue = Venue.Find(parameters.id);
+        updateVenue.Update(Request.Form["name"]);
+        return View["index.cshtml", Venue.GetAll()];
+      };
+
+
+
+
+
 
 
 
