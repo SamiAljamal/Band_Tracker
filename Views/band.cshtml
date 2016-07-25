@@ -22,19 +22,20 @@
         </form>
       </div>
       <div class="jumbotron">
-        <h2>Band List!</h2>
+        <h2>Venue List!</h2>
         <ul>
           @if (Model["Venue"].Count !=0)
           {
             @foreach (var venue in Model["Venue"])
             {
-              <li>@venue.GetName() &nbsp <a href="/venue/remove/@venue.GetId()">Remove Venue</a></li>
+              <form  action="/band/@Model["Bands"].GetId()/drop/@venue.GetId()" method="post"><li>
+                <label for="drop@venue.GetId()"><h3>@venue.GetName()</h3></label>&nbsp&nbsp<input type="hidden" name="_method" value="DELETE"><button type="submit" name="button">Remove Venue</button></li></form>
             }
           }
           else
           {
             <p>
-              No Bands added to the venue yet.
+              No Venue has been added to the venue yet.
             </p>
           }
         </ul>

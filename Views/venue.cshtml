@@ -27,7 +27,9 @@
           {
             @foreach (var bands in Model["Bands"])
             {
-              <li>@bands.GetName() &nbsp <a href="/band/remove/@bands.GetId()">Remove Band</a></li>
+
+              <form  action="/venue/@Model["Venue"].GetId()/drop/@bands.GetId()" method="post"><li>
+                <label for="drop@bands.GetId()"><h3>@bands.GetName()</h3></label>&nbsp&nbsp<input type="hidden" name="_method" value="DELETE"><button type="submit" name="button">Remove Band</button></li></form>
             }
           }
           else

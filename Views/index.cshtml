@@ -9,7 +9,6 @@
   <div class="container">
     <div class="jumbotron">
       <h2>Portland Concerts!</h2>
-      <h4><a href="/bands">View All the Bands!</a></h4>
       <p>
         Welcome to Portland's Concert page! have a look at all of our venues and what bands will be playing there.
       </p>
@@ -27,7 +26,7 @@
         {
           @foreach(var venue in Model)
           {
-            <li><a href="/venues/@venue.GetId()"><h3>@venue.GetName()</h3></a><form action="/venue/delete" method="post"><input type="hidden" name="_method" value="DELETE"><input type="hidden" name="venue_id" value="@venue.GetId()"><button type="submit" name ="button">Delete</button></form><a href="/update/@venue.GetId()"><button type="button" name="button">Update</button></a></li>
+            <form action="/venue/delete" method="post"><li><a href="/venues/@venue.GetId()"><h3>@venue.GetName()</h3></a><input type="hidden" name="_method" value="DELETE"><input type="hidden" name="venue_id" value="@venue.GetId()"><button type="submit" name ="button">Delete</button><a href="/update/@venue.GetId()"><button type="button" name="button">Update</button></a></li></form>
           }
 
         }
@@ -40,7 +39,9 @@
 
       </ul>
     </div>
-
+    <div class="jumbotron">
+        <h3><a href="/bands">View All the Bands!</a></h3>
+    </div>
   </div>
 </body>
 </html>
